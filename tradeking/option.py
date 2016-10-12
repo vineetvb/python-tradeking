@@ -4,8 +4,8 @@ import logging
 
 import pandas as pd
 
-import api
-import utils
+from . import api
+from . import utils
 
 
 LOG = logging.getLogger(__name__)
@@ -119,7 +119,7 @@ class Leg(object):
 
     @utils.cached_property()
     def payoffs(self):
-        prices = pd.Series(xrange(self._start, self._stop, self._tick_size))
+        prices = pd.Series(range(self._start, self._stop, self._tick_size))
 
         payoffs = prices.apply(self._payoff_func)
         payoffs.index = prices
